@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="cse" class="com.cognizant.springlearn.model.Department">
+		<property name="id" value="1"/>
+		<property name="name" value="CSE"/>
+	</bean>
+	<bean id="ece" class="com.cognizant.springlearn.model.Department">
+		<property name="id" value="2"/>
+		<property name="name" value="ECE"/>
+	</bean>
+	<bean id="eee" class="com.cognizant.springlearn.model.Department">
+		<property name="id" value="3"/>
+		<property name="name" value="EEE"/>
+	</bean>
+	<bean id="mech" class="com.cognizant.springlearn.model.Department">
+		<property name="id" value="4"/>
+		<property name="name" value="MECH"/>
+	</bean>
+	<bean class="com.cognizant.springlearn.model.Skill" id="cpp">
+		<property name="id" value="11"/>
+		<property name="name" value="C++"/>
+	</bean>
+	<bean class="com.cognizant.springlearn.model.Skill" id="py">
+		<property name="id" value="12"/>
+		<property name="name" value="PYTHON"/>
+	</bean>
+	<bean class="com.cognizant.springlearn.model.Skill" id="sql">
+		<property name="id" value="13"/>
+		<property name="name" value="SQL"/>
+	</bean>
+	<bean class="com.cognizant.springlearn.model.Skill" id="java">
+		<property name="id" value="14"/>
+		<property name="name" value="JAVA"/>
+	</bean>
+	<bean id="dateFormat" class="java.text.SimpleDateFormat">
+		<constructor-arg value="dd/MM/yyyy" />
+	</bean>
+	<bean class="java.util.Date" id="date" factory-method="parse" factory-bean="dateFormat">
+		<constructor-arg value="29/05/1999"/>
+	</bean>
+	<bean class="com.cognizant.springlearn.model.Employee" id="emp1">
+		<property name="id" value="101"/>
+		<property name="name" value="Clac Gyne"/>
+		<property name="salary" value="500000"/>
+		<property name="permanent" value="true"/>
+		<property name="department" ref="cse"/>
+		<property name="skills">
+			<list value-type="com.cognizant.springlearn.model.Skill">
+				<ref bean="cpp"/>
+				<ref bean="sql"/>
+			</list>
+		</property>
+		<property name="dateOfBirth" ref="date"/>
+	</bean>
+	<bean class="com.cognizant.springlearn.model.Employee" id="emp2">
+		<property name="id" value="102"/>
+		<property name="name" value="Max Croz"/>
+		<property name="salary" value="600000"/>
+		<property name="permanent" value="false"/>
+		<property name="department" ref="eee"/>
+		<property name="skills">
+			<list value-type="com.cognizant.springlearn.model.Skill">
+				<ref bean="cpp"/>
+				<ref bean="java"/>
+			</list>
+		</property>
+		<property name="dateOfBirth" ref="date"/>
+	</bean>
+	<bean class="com.cognizant.springlearn.model.Employee" id="emp3">
+		<property name="id" value="103"/>
+		<property name="name" value="Donx Eplic"/>
+		<property name="salary" value="760000"/>
+		<property name="permanent" value="true"/>
+		<property name="department" ref="mech"/>
+		<property name="skills">
+			<list value-type="com.cognizant.springlearn.model.Skill">
+				<ref bean="sql"/>
+				<ref bean="java"/>
+			</list>
+		</property>
+		<property name="dateOfBirth" ref="date"/>
+	</bean>
+	<bean class="com.cognizant.springlearn.model.Employee" id="emp4">
+		<property name="id" value="104"/>
+		<property name="name" value="Mac Rothy"/>
+		<property name="salary" value="90000"/>
+		<property name="permanent" value="true"/>
+		<property name="department" ref="cse"/>
+		<property name="skills">
+			<list value-type="com.cognizant.springlearn.model.Skill">
+				<ref bean="java"/>
+				<ref bean="sql"/>
+				<ref bean="py"/>
+			</list>
+		</property>
+		<property name="dateOfBirth" ref="date"/>
+	</bean>
+	<bean class="java.util.ArrayList" id="empList">
+		<constructor-arg>
+			<list value-type="com.cognizant.springlearn.model.Employee">
+				<ref bean="emp1"/>
+				<ref bean="emp2"/>
+				<ref bean="emp3"/>
+				<ref bean="emp4"/>
+			</list>
+		</constructor-arg>
+	</bean>
+	<bean class="java.util.ArrayList" id="deptList">
+		<constructor-arg>
+			<list value-type="com.cognizant.springlearn.model.Department">
+				<ref bean="cse"/>
+				<ref bean="eee"/>
+				<ref bean="ece"/>
+				<ref bean="mech"/>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+</beans>
